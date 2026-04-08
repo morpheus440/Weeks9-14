@@ -26,9 +26,21 @@ public class TargetScirpt : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("Attack!( " + context.phase + " )");
-            //alien.DestroyThisObject();
-            //Vector3 positionOfAlien = alien.transform.position;
+            AlienScript alienScript = alien.GetComponent<AlienScript>();
+            Vector3 alienPosition = alienScript.FindObjectTransform();
+            Debug.Log(alienPosition);
+
+            Vector3 topLeft = transform.position + new Vector3(-1.26f, -1.26f, 0);
+            Vector3 bottemRight = transform.position + new Vector3(1.26f, 1.26f, 0);
+
+            
+            if (alienPosition.x >= topLeft.x && alienPosition.x <= bottemRight.x &&
+                alienPosition.y >= topLeft.y && alienPosition.y <= bottemRight.y)
+            {
+                alienScript.DestroyThisObject();
+            }
+            
+
         }
     }
 }

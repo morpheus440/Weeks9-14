@@ -15,6 +15,11 @@ public class AlienScript : MonoBehaviour
         
     }
 
+    public Vector3 FindObjectTransform()
+    {
+        return (transform.position);
+    }
+
     public void DestroyThisObject()
     {
         Destroy(gameObject);

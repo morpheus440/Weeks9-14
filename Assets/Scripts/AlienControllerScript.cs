@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class AlienControllerScript : MonoBehaviour
 {
     public GameObject alienPrefab;
     public GameObject crownAlienPrefab;
+    public TextMeshProUGUI scoreCountText;
     public List<AlienScript> aliens = new List<AlienScript>();
     public Vector3 spawnPosition;
     public float timer = 0f;
@@ -15,8 +17,7 @@ public class AlienControllerScript : MonoBehaviour
 
     void Start()
     {
-        //createAlien();
-        //createCrownAlien();
+
     }
     void Update()
     {
@@ -36,7 +37,15 @@ public class AlienControllerScript : MonoBehaviour
             createCrownAlien();
             timerTwo = 0f;
         }
+    }
 
+    public void CrownReachedEarth()
+    {
+        crownPoints += 1;
+        CrownAlienScript crownAlienScript = crownAlienPrefab.GetComponent<CrownAlienScript>();
+        crownAlienScript.DestroyThisObject();
+
+        scoreCountText.text = "StarCount: " + crownPoints.ToString();
     }
 
     public void createAlien()
@@ -60,7 +69,7 @@ public class AlienControllerScript : MonoBehaviour
                 spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Random.Range(0, Screen.height), 0));
             }
 
-            Debug.Log("One");
+        Debug.Log("One");
             GameObject newAlien = Instantiate(alienPrefab, spawnPosition, Quaternion.identity);
     }
 
@@ -70,22 +79,22 @@ public class AlienControllerScript : MonoBehaviour
 
             if (randomSide == 0)
             {
-                spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Screen.height, 0));
+                spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height, 0));
             }
             if (randomSide == 1)
             {
-                spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), 0, 0));
+                spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0, 0));
             }
             if (randomSide == 2)
             {
-                spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(0, Random.Range(0, Screen.height), 0));
+                spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height / 2, 0));
             }
             if (randomSide == 3)
             {
-                spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Random.Range(0, Screen.height), 0));
+                spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height / 2, 0));
             }
 
-            Debug.Log("two");
+        Debug.Log("two");
             GameObject newCrownAlien = Instantiate(crownAlienPrefab, spawnPosition, Quaternion.identity);
     }
 }

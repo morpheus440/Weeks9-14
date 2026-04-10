@@ -75,21 +75,13 @@ public class AlienControllerScript : MonoBehaviour
 
     public void createCrownAlien()
     {
-            int randomSide = Random.Range(0, 4);
+            int randomSide = Random.Range(0, 2);
 
             if (randomSide == 0)
             {
-                spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height, 0));
-            }
-            if (randomSide == 1)
-            {
-                spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0, 0));
-            }
-            if (randomSide == 2)
-            {
                 spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height / 2, 0));
             }
-            if (randomSide == 3)
+            if (randomSide == 1)
             {
                 spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height / 2, 0));
             }

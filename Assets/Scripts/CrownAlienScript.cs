@@ -22,13 +22,18 @@ public class CrownAlienScript : MonoBehaviour
     void Update()
     {
         t += Time.deltaTime;
-        transform.position = Vector3.Lerp(startPosition, earthPostion, duration);
+        transform.position = Vector3.Lerp(startPosition, earthPostion, t / duration);
 
         float temp = curve.Evaluate(t);
 
         Vector3 position = transform.position;
         position.y += temp - 0.5f;
         transform.position = position;
+    }
+
+    public int ShipType()
+    {
+        return (2);
     }
 
     public Vector3 FindObjectTransform()

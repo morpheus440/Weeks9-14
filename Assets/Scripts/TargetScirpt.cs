@@ -4,12 +4,12 @@ using UnityEngine.InputSystem;
 
 public class TargetScirpt : MonoBehaviour
 {
-    public GameObject alien;
     public GameObject explosionPrefab;
     public float speed = 3f;
     public Vector2 directionalInput;
     public bool canMove = true;
     public float time = 0f;
+    public AlienControllerScript alienControllerScript;
 
     void Start()
     {
@@ -36,18 +36,22 @@ public class TargetScirpt : MonoBehaviour
         {
             StartCoroutine(reload());
             GameObject newExplosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            AlienScript alienScript = alien.GetComponent<AlienScript>();
-            Vector3 alienPosition = alienScript.FindObjectTransform();
-            //Debug.Log(alienPosition);
 
             Vector3 topLeft = transform.position + new Vector3(-1.26f, -1.26f, 0);
             Vector3 bottemRight = transform.position + new Vector3(1.26f, 1.26f, 0);
 
-            
-            if (alienPosition.x >= topLeft.x && alienPosition.x <= bottemRight.x &&
-                alienPosition.y >= topLeft.y && alienPosition.y <= bottemRight.y)
+            for(int i = alienControllerScript.aliens.Count - 1; i >= 0; i--)
             {
-                alienScript.DestroyThisObject();
+                GameObject alien = alienControllerScript.aliens[i];
+
+                Vector3 alienPosition = alien.transform.position;
+
+                if (alienPosition.x >= topLeft.x && alienPosition.x <= bottemRight.x &&
+                alienPosition.y >= topLeft.y && alienPosition.y <= bottemRight.y)
+                {
+                    alienControllerScript.RemoveAlien(alien);
+                }
+
             }
         }
     }

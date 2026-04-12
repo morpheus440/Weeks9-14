@@ -153,8 +153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -340.2, y: -191.9}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -103.74512, y: -195.60619}
+  m_SizeDelta: {x: 672.9098, y: 42.5876}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &230144234
 MonoBehaviour:
@@ -288,7 +288,7 @@ MonoBehaviour:
   aliens: []
   alienPrefab: {fileID: 4851597571161762098, guid: 8625f599393dc8843a66014cc120926c, type: 3}
   crownAlienPrefab: {fileID: 4125716094625619915, guid: 26f6d929971b19e48a847c9058a57fbd, type: 3}
-  scoreCountText: {fileID: 0}
+  scoreCountText: {fileID: 230144234}
   spawnPosition: {x: 0, y: 0, z: 0}
   timer: 0
   timerTwo: 0
@@ -320,6 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1110659847}
   - component: {fileID: 1110659846}
+  - component: {fileID: 1110659848}
   m_Layer: 0
   m_Name: Earth
   m_TagString: Untagged
@@ -401,6 +402,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1110659848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110659845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef6d05684faf5c448d2432eccc8371f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EarthScript
+  alienControllerScript: {fileID: 922804663}
+  scoreCountText: {fileID: 230144234}
+  lost: 0
 --- !u!1 &1195386646
 GameObject:
   m_ObjectHideFlags: 0

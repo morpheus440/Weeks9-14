@@ -10,33 +10,28 @@ public class AlienScript : MonoBehaviour
     public float duration = 3f;
     Vector3 startPosition;
     float t = 0f;
-    //Make two types of ships, one thats yellow and moves in a curving line 
-    //the yellow ships gives you a star, you need three stars to win
-    //yellow ships come every 15 seconds
 
     void Start()
     {
-        startPosition = transform.position;
+        startPosition = transform.position;//set start pos to current pos
     }
 
     // Update is called once per frame
     void Update()
     {
         t += Time.deltaTime;
-        transform.position = Vector3.Lerp(startPosition, earthPosition, t / duration);
-
-        float temp = curve.Evaluate(t);
+        transform.position = Vector3.Lerp(startPosition, earthPosition, t / duration); //moves twords earth pos
 
         Vector3 position = transform.position;
         transform.position = position;
     }
 
-    public Vector3 FindObjectTransform()
+    public Vector3 FindObjectTransform()//find tranform of this object
     {
         return (transform.position);
     }
 
-    public void DestroyThisObject()
+    public void DestroyThisObject()//destorys this object
     {
         Destroy(gameObject);
     }

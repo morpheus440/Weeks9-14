@@ -19,28 +19,28 @@ public class TargetScirpt : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        if (canMove)
+        if (canMove)//can move determined if can in reload corrutine
         {
-            transform.position += (Vector3)directionalInput * speed * Time.deltaTime;
+            transform.position += (Vector3)directionalInput * speed * Time.deltaTime;//directional movment
         }
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)//using unity new input system to move
     {
         directionalInput = context.ReadValue<Vector2>();
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     { 
-        if (context.performed)
+        if (context.performed)//calls it only once rather then three times
         {
-            StartCoroutine(reload());
-            GameObject newExplosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            StartCoroutine(reload());//calls reload coroutine
+            GameObject newExplosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);//makes explosion object
 
-            Vector3 topLeft = transform.position + new Vector3(-1.26f, -1.26f, 0);
+            Vector3 topLeft = transform.position + new Vector3(-1.26f, -1.26f, 0);//set top left and bottom right coner to make effected box from attacking
             Vector3 bottemRight = transform.position + new Vector3(1.26f, 1.26f, 0);
 
-            for(int i = alienControllerScript.aliens.Count - 1; i >= 0; i--)
+            for(int i = alienControllerScript.aliens.Count - 1; i >= 0; i--)//goes through every alien in the list checking if its in the box
             {
                 GameObject alien = alienControllerScript.aliens[i];
 
@@ -49,8 +49,8 @@ public class TargetScirpt : MonoBehaviour
                 if (alienPosition.x >= topLeft.x && alienPosition.x <= bottemRight.x &&
                 alienPosition.y >= topLeft.y && alienPosition.y <= bottemRight.y)
                 {
-                    alienControllerScript.CheckIfCrownAlien(alien);
-                    alienControllerScript.RemoveAlien(alien);
+                    alienControllerScript.CheckIfCrownAlien(alien);//calls method 
+                    alienControllerScript.RemoveAlien(alien);//calls method
                 }
 
             }
@@ -60,13 +60,13 @@ public class TargetScirpt : MonoBehaviour
     {
         float duration = 1.5f;
 
-        while (time < duration)
+        while (time < duration)//sets can move to false when waiting 1.5f
         {
             canMove = false;
             yield return null;
         }
 
-        canMove = true;
-        time = 0f;
+        canMove = true;//lets you move again
+        time = 0f;//resets time 
     }
 }

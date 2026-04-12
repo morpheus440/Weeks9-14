@@ -9,13 +9,9 @@ public class CrownAlienScript : MonoBehaviour
     public float duration = 7f;
     Vector3 startPosition;
 
-    //Make two types of ships, one thats yellow and moves in a curving line 
-    //the yellow ships gives you a star, you need three stars to win
-    //yellow ships come every 15 seconds
-
     void Start()
     {
-        startPosition = transform.position;
+        startPosition = transform.position;//sets current pos
     }
 
     // Update is called once per frame
@@ -27,16 +23,16 @@ public class CrownAlienScript : MonoBehaviour
         float temp = curve.Evaluate(t);
 
         Vector3 position = transform.position;
-        position.y += temp - 0.5f;
+        position.y += temp - 0.5f;//moves it with the animation curve -0.5 to put it in the middle since animation curve revolves above the middle line not on it
         transform.position = position;
     }
 
-    public Vector3 FindObjectTransform()
+    public Vector3 FindObjectTransform()//return object pos
     {
         return (transform.position);
     }
 
-    public void DestroyThisObject()
+    public void DestroyThisObject()//desotry this object
     {
         Destroy(gameObject);
     }

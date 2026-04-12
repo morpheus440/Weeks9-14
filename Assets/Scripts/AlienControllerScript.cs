@@ -43,16 +43,22 @@ public class AlienControllerScript : MonoBehaviour
 
     public void RemoveAlien(GameObject alien)
     {
-        AlienScript alienScript = alien.GetComponent<AlienScript>();
-
-        if (alienScript.ShipType() == 2)
-        {
-            crownPoints += 1;
-            scoreCountText.text = "StarCount: " + crownPoints.ToString();
-        }
-
         aliens.Remove(alien);
         Destroy(alien);
+    }
+
+    public void CheckIfCrownAlien(GameObject alien)
+    {
+        AlienScript alienScript = alien.GetComponent<AlienScript>();
+        if (alien.GetComponent<CrownAlienScript>() != null)
+        {
+            crownPoints++;
+            scoreCountText.text = "StarCount: " + crownPoints.ToString();
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void createAlien()
@@ -76,7 +82,6 @@ public class AlienControllerScript : MonoBehaviour
                 spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Random.Range(0, Screen.height), 0));
             }
 
-        Debug.Log("One");
             GameObject newAlien = Instantiate(alienPrefab, spawnPosition, Quaternion.identity);
             aliens.Add(newAlien);
     }
@@ -94,7 +99,6 @@ public class AlienControllerScript : MonoBehaviour
                 spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Random.Range(0, Screen.height) , 0));
         }
 
-        Debug.Log("two");
             GameObject newCrownAlien = Instantiate(crownAlienPrefab, spawnPosition, Quaternion.identity);
             aliens.Add(newCrownAlien);
     }

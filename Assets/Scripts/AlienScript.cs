@@ -31,11 +31,6 @@ public class AlienScript : MonoBehaviour
         transform.position = position;
     }
 
-    public int ShipType()
-    {
-        return (1);
-    }
-
     public Vector3 FindObjectTransform()
     {
         return (transform.position);

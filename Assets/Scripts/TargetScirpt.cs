@@ -49,6 +49,7 @@ public class TargetScirpt : MonoBehaviour
                 if (alienPosition.x >= topLeft.x && alienPosition.x <= bottemRight.x &&
                 alienPosition.y >= topLeft.y && alienPosition.y <= bottemRight.y)
                 {
+                    alienControllerScript.CheckIfCrownAlien(alien);
                     alienControllerScript.RemoveAlien(alien);
                 }
 

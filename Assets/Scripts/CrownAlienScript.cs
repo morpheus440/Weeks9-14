@@ -31,11 +31,6 @@ public class CrownAlienScript : MonoBehaviour
         transform.position = position;
     }
 
-    public int ShipType()
-    {
-        return (2);
-    }
-
     public Vector3 FindObjectTransform()
     {
         return (transform.position);
